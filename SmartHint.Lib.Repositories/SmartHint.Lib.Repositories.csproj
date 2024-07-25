@@ -7,10 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="SmartHintDB\Config\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\SmartHint.Lib.Models\SmartHint.Lib.Models.csproj" />
 		<ProjectReference Include="..\SmartHint.Lib.Utils\SmartHint.Lib.Utils.csproj" />
 	</ItemGroup>

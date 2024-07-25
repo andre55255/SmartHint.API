@@ -1,0 +1,7 @@
+Add-Migration NomeDaMigration -context SmartHintDbContext -o Migrations/EF/MSSmartHintDB
+
+Script-Migration -context SmartHintDbContext // Gerar código sql
+
+Remove-Migration -context SmartHintDbContext //para remover migration
+
+Update-Database -context SmartHintDbContext //para dar update no banco de dados
