@@ -2,6 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartHint.Lib.Repositories.SmartHintDB.Config.Context;
+using SmartHint.Lib.Repositories.SmartHintDB.Repository.Configurations;
+using SmartHint.Lib.Repositories.SmartHintDB.Repository.UsersStores;
 using SmartHint.Lib.Utils.Helpers;
 
 namespace SmartHint.Lib.Repositories.SmartHintDB.Repository
@@ -23,7 +25,8 @@ namespace SmartHint.Lib.Repositories.SmartHintDB.Repository
             });
 
             // Repositories Configs
-
+            services.AddScoped<IConfigurationsSmartHintDbRepository, ConfigurationsSmartHintDbRepository>();
+            services.AddScoped<IUsersStoresSmartHintDbRepository, UsersStoresSmartHintDbRepository>();
 
             return services;
         }

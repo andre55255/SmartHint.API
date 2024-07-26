@@ -6,9 +6,4 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Inputs\" />
-    <Folder Include="Filters\" />
-  </ItemGroup>
-
 </Project>

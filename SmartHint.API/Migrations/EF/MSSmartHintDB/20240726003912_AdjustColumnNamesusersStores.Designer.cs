@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartHint.Lib.Repositories.SmartHintDB.Config.Context;
 
@@ -10,9 +11,11 @@ using SmartHint.Lib.Repositories.SmartHintDB.Config.Context;
 namespace SmartHint.API.Migrations.EF.MSSmartHintDB
 {
     [DbContext(typeof(SmartHintDbContext))]
-    partial class SmartHintDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240726003912_AdjustColumnNamesusersStores")]
+    partial class AdjustColumnNamesusersStores
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
