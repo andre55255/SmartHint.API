@@ -213,7 +213,7 @@ namespace SmartHint.Lib.Services.Services.UsersStores
             {
                 var countUsersStoreWithId = await _usersStoresSmartHintDbRepo.CountByQueryAsync(x => x.Id == id);
 
-                if (countUsersStoreWithId > 0)
+                if (countUsersStoreWithId <= 0)
                     throw new NotFoundException($"Não foi encontrado um comprador com o id {id}");
 
                 await _usersStoresSmartHintDbRepo.RemoveAsync(x => x.Id == id);
@@ -269,6 +269,7 @@ namespace SmartHint.Lib.Services.Services.UsersStores
                     throw new ConflicException($"Inscrição estadual informada já está vinculada com outro comprador");
 
                 var entity = _mapper.Map<UserStoreSmartHintDbModel>(model);
+                entity.Id = id;
 
                 if (!string.IsNullOrEmpty(model.Password))
                     entity.PasswordHash = CryptoMethodsHelper.GetMD5Hash(model.Password);
@@ -320,6 +321,11 @@ namespace SmartHint.Lib.Services.Services.UsersStores
 
                 if (model.BirthDate == null || model.BirthDate.Value > DateTime.Now.Date)
                     throw new ServiceException($"Data de nascimento de PF não informado ou inválida");
+            }
+            else
+            {
+                model.Gender = null;
+                model.BirthDate = null;
             }
 
             var isExemptConfig = await _configurationsService.IsStateRegistrationForPFAsync();
