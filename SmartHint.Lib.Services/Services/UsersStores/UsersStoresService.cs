@@ -267,11 +267,14 @@ namespace SmartHint.Lib.Services.Services.UsersStores
                 if (countUsersWithCpfCnpj > 0)
                     throw new ConflicException($"Cpf Cnpj já está vinculado com outro comprador");
 
-                var countusersWithIE = await _usersStoresSmartHintDbRepo.CountByQueryAsync(x => x.StateRegistration == model.StateRegistration && x.Id != id);
+                if (!string.IsNullOrEmpty(model.StateRegistration))
+                {
+                    var countusersWithIE = await _usersStoresSmartHintDbRepo.CountByQueryAsync(x => x.StateRegistration == model.StateRegistration && x.Id != id);
 
-                if (countusersWithIE > 0)
-                    throw new ConflicException($"Inscrição estadual informada já está vinculada com outro comprador");
+                    if (countusersWithIE > 0)
+                        throw new ConflicException($"Inscrição estadual informada já está vinculada com outro comprador");
 
+                }
                 var entity = _mapper.Map<UserStoreSmartHintDbModel>(model);
                 entity.Id = id;
 
