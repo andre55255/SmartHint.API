@@ -1,5 +1,7 @@
 ## Projeto de API para Vaga de Dev C# Pleno Smart Hint
 
+### Publicação disponível em https://api-smarthint.albarros.com.br/swagger/index.html
+
 ### API contendo: 
 - Métodos de crud de compradores conforme solicitado pelo teste
 - Método para verificar configuração de "Inscrição estadual para Pessoa Física", que está salva na base de dados na tabela de configurações com o token "IS_STATE_REGISTRATION_FOR_PF".
