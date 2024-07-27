@@ -43,10 +43,14 @@ namespace SmartHint.Lib.Services.Services.UsersStores
                 if (countUsersWithCpfCnpj > 0)
                     throw new ConflicException($"Cpf Cnpj já está vinculado com outro comprador");
 
-                var countusersWithIE = await _usersStoresSmartHintDbRepo.CountByQueryAsync(x => x.StateRegistration == model.StateRegistration);
+                if (!string.IsNullOrEmpty(model.StateRegistration))
+                {
+                    var countusersWithIE = await _usersStoresSmartHintDbRepo.CountByQueryAsync(x => x.StateRegistration == model.StateRegistration);
 
-                if (countusersWithIE > 0)
-                    throw new ConflicException($"Inscrição estadual informada já está vinculada com outro comprador");
+                    if (countusersWithIE > 0)
+                        throw new ConflicException($"Inscrição estadual informada já está vinculada com outro comprador");
+                }
+
 
                 if (string.IsNullOrEmpty(model.Password))
                     throw new ServiceException($"Senha de comprador não informada");
@@ -327,6 +331,9 @@ namespace SmartHint.Lib.Services.Services.UsersStores
                 model.Gender = null;
                 model.BirthDate = null;
             }
+
+            if (model.IsExempt)
+                model.StateRegistration = null;
 
             var isExemptConfig = await _configurationsService.IsStateRegistrationForPFAsync();
 
